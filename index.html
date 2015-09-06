@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Scalable and maintainable stylesheets</title>
+
+        <meta name="description" content="An introduction to Chopstick: Jekyll boilerplate, CSS framework and Gulp workflow">
+        <meta name="author" content="Dieter Peirs">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <!-- Font -->
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,900,400italic' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/custom.css" id="theme">
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+                <!-- Title -->
+                <section data-markdown data-background="img/1-Title.jpg" data-background-transition="slide" data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
+                    # Scalable and maintainable stylesheets
+                    Fork CMS meetup, 9 september 2015
+                </section>
+                <!-- End title -->
+
+                <!-- About me -->
+                <section data-markdown data-background="img/2-hi.jpg" data-background-transition="slide" data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:"
+                class="is-inverted">
+                    ## Hi
+                    [@DieterPeirs](https://twitter.com/DieterPeirs), designer and front-end developer [@vreewijs](https://twitter.com/vreewijs)
+                </section>
+                <!-- End about me -->
+
+                <section data-background-transition="slide">
+
+                    <section data-markdown data-background="img/3-which-framework.jpg" data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
+                        #### Prelude
+                        ## Which framework?
+                    </section>
+
+                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:"
+                    data-background="#2D3440"
+                    class="is-inverted">
+                        ## “Don’t Reinvent The Wheel, Unless You Plan on Learning More About Wheels”
+                        — Jeff Atwood, [Read the full article](http://blog.codinghorror.com/dont-reinvent-the-wheel-unless-you-plan-on-learning-more-about-wheels/)
+                    </section>
+
+                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
+                        ## To framework or not to framework?
+
+                        - Use a framework if it makes sense but don't blindly adopt something.
+                        - Keep reinventing, keep learning, question everything!
+                        - **Try this:** use a set of micro-libraries (normalize.css, OOCSS objects, bootstrap components) combined with custom components for the best of both worlds.
+                    </section>
+
+                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:"
+                    data-background="#2D3440"
+                    class="is-inverted">
+                        ## “There’s the whole Buddhist thing about the essence of a bowl being its emptiness — that’s why it’s useful. Its emptiness allows it to hold something …”
+                        — Frank Chimero
+
+                        Note:
+                        - Architecture is more important.
+                        - It is the “how” vs the “what”
+                    </section>
+
+                </section>
+
+                <section data-background-transition="slide">
+
+                    <section data-markdown data-background="img/4-architecture-trumps-frameworks.jpg" data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
+                        #### Part 1
+                        ## Tools
+                    </section>
+
+                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
+                        ### Pre- and postprocessors
+                        - [Sass](http://sass-lang.com/) is the most popular *(Bootstrap 4 switched to Sass)*
+                        - [PostCSS](https://github.com/postcss/postcss) is gaining popularity fast. *(Bootstrap 5 will be written in POSTCSS)*
+                        - **Recommended:** Sass *(.scss flavor)* combined with PostCSS for tasks like [automatic vendor prefixes](https://github.com/postcss/autoprefixer).
+                    </section>
+
+                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
+                        ### Imports
+                        - Facilitates combining different libraries, plugins and custom styles
+                        - Enables working with multiple people on the same project
+                        - Is an essential tool for a scalable architecture as it allows you to easily insert new blocks of code
+                        NOTE: CSS also allows imports but with this has bad performance
+                    </section>
+
+                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:"
+                    data-background="#2D3440"
+                    class="is-inverted">
+                        #### In use
+                        <pre>
+                            <code class="hljs scss">
+                                // Core variables and mixins
+                                @import "bootstrap/variables";
+                                @import "bootstrap/mixins";
+
+                                // Reset and dependencies
+                                @import "bootstrap/normalize";
+
+                                // Core CSS
+                                @import "bootstrap/type";
+
+                                // Components
+                                @import "bootstrap/dropdowns";
+
+                                // Components w/ JavaScript
+                                @import "bootstrap/modals";
+
+                                // Utility classes
+                                @import "bootstrap/utilities";
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
+                        ### Variables
+                        - Create reusable values *(colors, spacing, fonts, …)*
+                        - Quickly customize or tweak an entire project
+                        - *CSS supports variables but browser support is still lacking*
+                    </section>
+
+                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:"
+                    data-background="#2D3440"
+                    class="is-inverted">
+                        #### In use
+                        <pre>
+                            <code class="hljs scss">
+                                $brand-primary:           darken(#428bca, 6.5%) !default;
+                                $brand-success:           #5cb85c !default;
+                                $brand-info:              #5bc0de !default;
+                                $brand-warning:           #f0ad4e !default;
+                                $brand-danger:            #d9534f !default;
+
+                                $btn-default-color:       #333 !default;
+                                $btn-default-bg:          #fff !default;
+                                $btn-default-border:      #ccc !default;
+
+                                $font-size-base:          14px !default;
+
+                                $font-size-h1:            floor(($font-size-base * 2.6)) !default;
+                                $font-size-h2:            floor(($font-size-base * 2.15)) !default;
+                                $font-size-h3:            ceil(($font-size-base * 1.7)) !default;
+                                $font-size-h4:            ceil(($font-size-base * 1.25)) !default;
+                                $font-size-h5:            $font-size-base !default;
+                                $font-size-h6:            ceil(($font-size-base * 0.85)) !default;
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
+                        ### Why preprocessors suck ...
+                        - [**Nesting:**](http://sassmeister.com/gist/a8afa8ca42bdeeee783e) creates too much specificity
+                        - [**@extends:**](http://sassmeister.com/gist/c59f815422104ca00aee) generate bloated code
+                        - *Always check your generated files*
+                    </section>
+
+                </section>
+
+                <section data-background-transition="slide">
+
+                    <section data-markdown data-background="img/5-specificity.jpg" data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
+                        #### Part 2
+                        ## Specificity and selector intent
+                    </section>
+
+                    <section
+                    data-background="#2D3440"
+                    class="is-inverted">
+                        <h4>Problem</h4>
+<pre>
+    <code class="hljs css">
+        h1 {
+            font-size: 2em;
+            color: red;
+        }
+
+        .module h1 {
+            color: blue
+        }
+    </code>
+</pre>
+                    </section>
+
+                    <section
+                    data-background="#2D3440"
+                    class="is-inverted">
+                        <h4>Solution</h4>
+<pre>
+    <code class="hljs css">
+        h1 {
+            font-size: 2em;
+        }
+
+        .page-title {
+            color: blue
+        }
+
+
+
+        /* Exception for editors, ...: Use a child selector */
+        .editor > h1 {
+            color: blue;
+        }
+    </code>
+</pre>
+                    </section>
+
+                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
+                        ### Summary
+                        - Respect the cascade.
+                        - Don't overdo styling of html elements
+                        - CSS reads from right to left
+                        - The more you specify something the bigger the depth of your selector gets and the harder it gets to override
+                        - Depth has a real impact on selector performance
+                    </section>
+
+                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:"
+                    data-background="#D8251F"
+                    class="is-inverted">
+                        ## NEVER USE ID’S FOR STYLING!
+                    </section>
+
+                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
+                        ## BEM
+                        #### *Block__element--modifier*
+                        - Naming methodology invented by Yandex
+                        - Blocks are the base selector
+                        - Elements are childs (delimited by __)
+                        - Modifiers are extensions (delimited by --)
+                    </section>
+
+                    <section
+                    data-background="#2D3440"
+                    class="is-inverted">
+                        <h4>BEM <em>(Block__element--modifier)</em></h4>
+<pre>
+    <code class="hljs css">
+        /* Blocks */
+        .module {
+            padding: 10px;
+        }
+
+        .button {
+            border-radius: 3px;
+        }
+
+        /* Elements */
+        .module__title {
+            color: blue;
+        }
+
+        /* Modifiers */
+        .button--alpha {
+            background-color: grey;
+        }
+
+        .button--beta {
+            background-color: grey;
+        }
+    </code>
+</pre>
+                    </section>
+
+                    <section
+                    data-background="#2D3440"
+                    class="is-inverted">
+                        <h4>BEM is great for understanding selectors in HTML</h4>
+<pre>
+    <code class="hljs html">
+<div class="module">
+
+    <h1 class="module__title">This is a title</h1>
+
+    <a href="#" class="button button--alpha">Link</a>
+
+</div>
+    </code>
+</pre>
+                    </section>
+
+                </section>
+
+                <section data-background-transition="slide">
+
+                    <section data-markdown data-background="img/6-Architecture.jpg" data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
+                        #### Part 3
+                        ## Front-end architecture
+                    </section>
+
+                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
+                        ## Create order in CSS & HTML
+                        - Order selectors based on ascending specificity.
+                        - Create layers to group styles in the same category.
+                        - Use a namespace prefix so classes are easy to read in HTML and quickly located in CSS.
+                        - [Read more](http://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/)
+                    </section>
+
+                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:"
+                    data-background="#2D3440"
+                    class="is-inverted">
+                        #### Namespace layers
+
+                            // 0. Settings
+                            @import "settings.typography";
+
+                            // 0. Tools
+                            @import "tools.grid";
+
+                            /* 1. Generic */
+                            @import "generic.normalize";
+
+                            /* 2. Elements */
+                            @import "elements.page";
+
+                            /* 3. Objects */
+                            @import "objects.grid";
+
+                            /* 4. Components */
+                            @import "components.buttons";
+
+                            /* 5. Plugins */
+                            @import "plugin.flexslider";
+
+                            /* 6. Utilities */
+                            @import "utilities.widths";
+
+                    </section>
+
+                    <section
+                    data-background="#2D3440"
+                    class="is-inverted">
+                        <h4>Namespace prefixes</h4>
+<pre>
+    <code class="hljs css">
+/* o-  Objects: reusable design patterns with no styling */
+.o-grid { }
+
+/* c-  Components: designed components, custom UI design */
+.c-navigation { }
+
+/* p-  Plugins: seperate your code from the plugin */
+.p-flexslider { }
+
+/* u-  Utilities: single-purpose helper classes */
+.u-margin-reset { }
+
+/* is-/has-  States: temporary states */
+.is-hidden { }
+.has-mobile-nav { }
+
+/* js-  Javascript hooks: only functionality, no styling */
+.js-modal { }
+
+    </code>
+</pre>
+                    </section>
+
+                    <section
+                    data-background="#2D3440"
+                    class="is-inverted">
+                        <h4>Namespaces in HTML</h4>
+<pre>
+    <code class="hljs html">
+<div class="c-modal is-hidden" id="modal">
+    <div class="o-container c-modal__content">
+        <div class="c-island">
+            <h1>Modal</h1>
+            <p>
+                Modal paragraph text.
+            </p>
+            <p>
+                <button class="c-btn js-toggle" data-target="#modal">
+                    Close modal
+                </button>
+            </p>
+        </div>
+     </div>
+</div>
+    </code>
+</pre>
+                    </section>
+
+                    <section data-background="#2D3440"
+                    class="is-inverted">
+                        <h4>Open/closed principle</h4>
+<pre>
+    <code class="hljs css">
+/* Design tweak: remove the margin on a module in some cases */
+
+/* Never touch the original module! */
+.c-module {
+    margin: 1em;
+}
+
+/* Option 1: use a modifier to extend the existing module */
+.c-module--margin-reset {
+    margin: 0;
+}
+
+/* Option 2: use a utility class for exceptions or quick fixes */
+.u-margin-reset {
+    margin: 0 !important;
+}
+
+    </code>
+</pre>
+                    </section>
+
+                </section>
+
+                <section data-background="img/1-Title.jpg" data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:" data-background-transition="slide">
+                    ## Thank you
+
+                    [@DieterPeirs](https://twitter.com/DieterPeirs)
+
+                    [@GetChopstick](https://twitter.com/GetChopstick)
+                </section>
+
+
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                // Optional reveal.js plugins
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
