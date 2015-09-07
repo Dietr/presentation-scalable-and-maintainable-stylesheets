@@ -73,12 +73,18 @@
                         — Jeff Atwood, [Read the full article](http://blog.codinghorror.com/dont-reinvent-the-wheel-unless-you-plan-on-learning-more-about-wheels/)
                     </section>
 
-                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                        ## To framework or not to framework?
+                    <section >
+                        <h3>To framework or not to framework?</h3>
 
-                        - Use a framework if it makes sense but don't blindly adopt something.
-                        - Keep reinventing, keep learning, question everything!
-                        - **Try this:** use a set of micro-libraries (normalize.css, OOCSS objects, bootstrap components) combined with custom components for the best of both worlds.
+                        <ul>
+                            <li class="fragment">Use a framework if it makes sense but don't blindly adopt something.</li>
+                            <li class="fragment">
+                                Keep reinventing, keep learning, question everything!
+                            </li>
+                            <li class="fragment">
+                                <strong>Try this:</strong> use a set of micro-libraries (normalize.css, OOCSS objects, bootstrap components) combined with custom components for the best of both worlds.
+                            </li>
+                        </ul>
                     </section>
 
                     <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:"
@@ -101,19 +107,37 @@
                         ## Tools
                     </section>
 
-                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                        ### Pre- and postprocessors
-                        - [Sass](http://sass-lang.com/) is the most popular *(Bootstrap 4 switched to Sass)*
-                        - [PostCSS](https://github.com/postcss/postcss) is gaining popularity fast. *(Bootstrap 5 will be written in POSTCSS)*
-                        - **Recommended:** Sass *(.scss flavor)* combined with PostCSS for tasks like [automatic vendor prefixes](https://github.com/postcss/autoprefixer).
+                    <section>
+                        <h3>Pre- and postprocessors</h3>
+                        <ul>
+                            <li class="fragment">
+                                <a href="http://sass-lang.com/">Sass</a> is the most popular <em>(Bootstrap 4 switched to Sass)</em>
+                            </li>
+                            <li class="fragment">
+                                <a href="https://github.com/postcss/postcss">PostCSS</a> is gaining popularity fast. <em>(Bootstrap 5 will probably be written in POSTCSS)</em>
+                            </li>
+                            <li class="fragment">
+                                <strong>Recommended:</strong> Sass *(.scss flavor)* combined with PostCSS for tasks like [automatic vendor prefixes](https://github.com/postcss/autoprefixer).
+                            </li>
+                        </ul>
                     </section>
 
-                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                        ### Imports
-                        - Facilitates combining different libraries, plugins and custom styles
-                        - Enables working with multiple people on the same project
-                        - Is an essential tool for a scalable architecture as it allows you to easily insert new blocks of code
-                        NOTE: CSS also allows imports but with this has bad performance
+                    <section>
+                        <h3>
+                            Imports
+                        </h3>
+                        <ul>
+                            <li class="fragment">
+                                Facilitates combining different libraries, plugins and custom styles
+                            </li>
+                            <li class="fragment">
+                                Enables working with multiple people on the same project
+                            </li>
+                            <li class="fragment">
+                                Is an essential tool for a scalable architecture as it allows you to easily insert new blocks of code
+                            </li>
+                        </ul>
+
                     </section>
 
                     <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:"
@@ -144,11 +168,19 @@
                         </pre>
                     </section>
 
-                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                        ### Variables
-                        - Create reusable values *(colors, spacing, fonts, …)*
-                        - Quickly customize or tweak an entire project
-                        - *CSS supports variables but browser support is still lacking*
+                    <section>
+                        <h3>Variables</h3>
+                        <ul>
+                            <li class="fragment">
+                                Create reusable values <em>(colors, spacing, fonts, …)</em>
+                            </li>
+                            <li class="fragment">
+                                Quickly customize or tweak an entire project
+                            </li>
+                            <li class="fragment">
+                                <em>CSS supports variables but browser support is still lacking</em>
+                            </li>
+                        </ul>
                     </section>
 
                     <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:"
@@ -179,11 +211,19 @@
                         </pre>
                     </section>
 
-                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                        ### Why preprocessors suck ...
-                        - [**Nesting:**](http://sassmeister.com/gist/a8afa8ca42bdeeee783e) creates too much specificity
-                        - [**@extends:**](http://sassmeister.com/gist/c59f815422104ca00aee) generate bloated code
-                        - *Always check your generated files*
+                    <section>
+                        <h3>Why preprocessors suck ...</h3>
+                        <ul>
+                            <li class="fragment">
+                                <strong><a href="http://sassmeister.com/gist/a8afa8ca42bdeeee783e">Nesting:</a></strong> creates too much specificity
+                            </li>
+                            <li class="fragment">
+                                <strong><a href="http://sassmeister.com/gist/c59f815422104ca00aee">@extends:</a></strong> generate bloated code
+                            </li>
+                            <li class="fragment">
+                                <em>*Always check your generated files*</em>
+                            </li>
+                        </ul>
                     </section>
 
                 </section>
@@ -237,13 +277,15 @@
 </pre>
                     </section>
 
-                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                        ### Summary
-                        - Respect the cascade.
-                        - Don't overdo styling of html elements
-                        - CSS reads from right to left
-                        - The more you specify something the bigger the depth of your selector gets and the harder it gets to override
-                        - Depth has a real impact on selector performance
+                    <section>
+                        <h3>Summary</h3>
+                        <ul>
+                            <li class="fragment">Respect the cascade.</li>
+                            <li class="fragment">Don't overdo styling of html elements</li>
+                            <li class="fragment">CSS reads from right to left</li>
+                            <li class="fragment">The more you specify something the bigger the depth of your selector gets and the harder it gets to override.</li>
+                            <li class="fragment">Depth has a real impact on selector performance</li>
+                        </ul>
                     </section>
 
                     <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:"
@@ -252,13 +294,15 @@
                         ## NEVER USE ID’S FOR STYLING!
                     </section>
 
-                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                        ## BEM
-                        #### *Block__element--modifier*
-                        - Naming methodology invented by Yandex
-                        - Blocks are the base selector
-                        - Elements are childs (delimited by __)
-                        - Modifiers are extensions (delimited by --)
+                    <section>
+                        <h3>BEM</h3>
+                        <h4><em>Block__element--modifier</em></h4>
+                        <ul>
+                            <li class="fragment">Naming methodology invented by Yandex</li>
+                            <li class="fragment">Blocks are the base selector</li>
+                            <li class="fragment">Elements are childs (delimited by __)</li>
+                            <li class="fragment">Modifiers are extensions (delimited by --)</li>
+                        </ul>
                     </section>
 
                     <section
@@ -319,12 +363,14 @@
                         ## Front-end architecture
                     </section>
 
-                    <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                        ## Create order in CSS & HTML
-                        - Order selectors based on ascending specificity.
-                        - Create layers to group styles in the same category.
-                        - Use a namespace prefix so classes are easy to read in HTML and quickly located in CSS.
-                        - [Read more](http://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/)
+                    <section>
+                        <h3>Create order in CSS & HTML</h3>
+                        <ul>
+                            <li class="fragment">Order selectors based on ascending specificity.</li>
+                            <li class="fragment">Create layers to group styles in the same category.</li>
+                            <li class="fragment">Use a namespace prefix so classes are easy to read in HTML and quickly located in CSS.</li>
+                            <li class="fragment"><a href="http://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/">Further reading</a></li>
+                        </ul>
                     </section>
 
                     <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:"
